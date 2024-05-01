@@ -58,8 +58,8 @@ export class AppComponent implements OnInit {
         const player1Score = this.player1Score;
         const player2Score = this.player2Score;
 
-        const player1Icon = faHandBackFist;
-        const player2Icon = faHandBackFist;
+        const player1Icon = this.getHandIcon(player1Hand);
+        const player2Icon = this.getHandIcon(player2Hand);
 
         return {
           player1Hand,
@@ -112,5 +112,20 @@ export class AppComponent implements OnInit {
     return rockBeatsScissors || paperBeatsRock || scissorsBeatsPaper
       ? 'win'
       : 'lose';
+  }
+
+  getHandIcon(hand: handShape) {
+    if (!hand) return faHandBackFist;
+
+    switch (hand) {
+      case 'rock':
+        return faHandBackFist;
+      case 'paper':
+        return faHand;
+      case 'scissors':
+        return faHandScissors;
+      default:
+        return null;
+    }
   }
 }

@@ -7,11 +7,31 @@
   </app-player-hand-icons>
 
   {{ vm.player1Hand }}
+  {{ vm.player2Hand }}
 
   @if (startGame) {
     <app-game-scores
       [player1Score]="vm.player1Score"
       [player2Score]="vm.player2Score"></app-game-scores>
+
+    <div style="width: 100%; text-align: center">
+      @if (!startGame) {
+        <p>Enter player names to start!</p>
+      } @else {
+        <p>
+          @if (!vm.result) {
+            Choose hand...
+          } @else {
+            @if (vm.result === 'draw') {
+              Draw
+            } @else {
+              {{ vm.result === 'win' ? player1 : player2 }}
+              wins!
+            }
+          }
+        </p>
+      }
+    </div>
 
     <app-game-actions
       [rockIcon]="faHandBackFist"
@@ -19,12 +39,4 @@
       [scissorsIcon]="faHandScissors"
       (handSelection)="onHandSelection($event)"></app-game-actions>
   }
-
-  <div style="width: 100%; text-align: center">
-    @if (!startGame) {
-      <p>Enter player names to start!</p>
-    } @else {
-      Choose hand...
-    }
-  </div>
 </ng-container>
