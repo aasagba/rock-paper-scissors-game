@@ -1,0 +1,17 @@
+<form [formGroup]="form">
+  <div class="row">
+    <div class="field">
+      <label>
+        player 1:
+        <input type="text" formControlName="player1" id="player_1" />
+      </label>
+    </div>
+
+    <div class="field">
+      player 2 (computer):
+      <input type="text" formControlName="player2" id="player_2" />
+    </div>
+
+    <button (click)="startGame()">start</button>
+  </div>
+</form>
