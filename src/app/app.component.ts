@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Observable } from 'rxjs';
+import { VM } from './types';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +11,5 @@ import { CommonModule } from '@angular/common';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  test = '';
+  vm$: Observable<VM>;
 }
