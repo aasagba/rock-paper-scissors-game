@@ -1,0 +1,16 @@
+$font-size: 20px;
+
+.row {
+  display: flex;
+  margin-bottom: 20px;
+  .field {
+    text-align: center;
+    flex: 1 1 50%;
+
+    input {
+      width: 40%;
+      height: 30px;
+      font-size: $font-size;
+    }
+  }
+}

@@ -1,1 +1,15 @@
-<app-header (playerNames)="onStartGame($event)"></app-header>
+<ng-container *ngIf="vm$ | async as vm">
+  <app-header (playerNames)="onStartGame($event)"></app-header>
+
+  <!-- icons -->
+  <app-player-hand-icons
+    [player1Icon]="vm.player1Icon"
+    [player2Icon]="vm.player2Icon">
+  </app-player-hand-icons>
+
+  @if (!startGame) {
+    <p>Enter player names to start!</p>
+  } @else {
+    Choose hand...
+  }
+</ng-container>
