@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnChanges,
-  SimpleChanges,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { IconDefinition } from '@fortawesome/free-regular-svg-icons';
 import { NgIf } from '@angular/common';
@@ -17,16 +11,7 @@ import { NgIf } from '@angular/common';
   styleUrl: './player-hand-icons.component.scss',
   // changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PlayerHandIconsComponent implements OnChanges {
+export class PlayerHandIconsComponent {
   @Input() player1Icon: IconDefinition;
   @Input() player2Icon: IconDefinition;
-
-  icon1: IconDefinition;
-  icon2: IconDefinition;
-
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log('changes: ', changes);
-    this.icon1 = changes?.['player1Icon'].currentValue;
-    this.icon2 = changes?.['player2Icon'].currentValue;
-  }
 }

@@ -13,6 +13,7 @@ import {
 import { GameScoresComponent } from './game-scores/game-scores.component';
 import { GameActionsComponent } from './game-actions/game-actions.component';
 import { moves } from './types';
+import { GameResultsComponent } from './game-results/game-results.component';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +25,7 @@ import { moves } from './types';
     PlayerHandIconsComponent,
     GameScoresComponent,
     GameActionsComponent,
+    GameResultsComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
@@ -54,6 +56,9 @@ export class AppComponent implements OnInit {
         const result: result = hand
           ? this.processResult(player1Hand, player2Hand)
           : null;
+
+        if (result === 'win') this.player1Score++;
+        if (result === 'lose') this.player2Score++;
 
         const player1Score = this.player1Score;
         const player2Score = this.player2Score;
