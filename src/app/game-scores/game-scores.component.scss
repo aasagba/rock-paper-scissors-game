@@ -1,0 +1,14 @@
+@import "../base";
+
+.score {
+  display: flex;
+  gap: 20px;
+  font-size: $heading-font-sizes;
+
+  .player1-score, .player2-score {
+    flex: 50%;
+    height: 50px;
+    text-align: center;
+    align-content: center;
+  }
+}

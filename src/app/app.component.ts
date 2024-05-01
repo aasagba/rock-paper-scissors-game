@@ -5,7 +5,13 @@ import { handShape, VM } from './types';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { PlayerHandIconsComponent } from './player-hand-icons/player-hand-icons.component';
-import { faHandBackFist } from '@fortawesome/free-regular-svg-icons';
+import {
+  faHand,
+  faHandBackFist,
+  faHandScissors,
+} from '@fortawesome/free-regular-svg-icons';
+import { GameScoresComponent } from './game-scores/game-scores.component';
+import { GameActionsComponent } from './game-actions/game-actions.component';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +21,8 @@ import { faHandBackFist } from '@fortawesome/free-regular-svg-icons';
     ReactiveFormsModule,
     HeaderComponent,
     PlayerHandIconsComponent,
+    GameScoresComponent,
+    GameActionsComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
@@ -24,7 +32,10 @@ export class AppComponent implements OnInit {
   player1: string;
   player2: string;
   startGame: boolean;
+
   faHandBackFist = faHandBackFist;
+  faHand = faHand;
+  faHandScissors = faHandScissors;
 
   private initGame$: BehaviorSubject<handShape | null> = new BehaviorSubject(
     null

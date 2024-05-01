@@ -1,15 +1,27 @@
 <ng-container *ngIf="vm$ | async as vm">
   <app-header (playerNames)="onStartGame($event)"></app-header>
 
-  <!-- icons -->
   <app-player-hand-icons
     [player1Icon]="vm.player1Icon"
     [player2Icon]="vm.player2Icon">
   </app-player-hand-icons>
 
-  @if (!startGame) {
-    <p>Enter player names to start!</p>
-  } @else {
-    Choose hand...
+  @if (startGame) {
+    <app-game-scores
+      [player1Score]="vm.player1Score"
+      [player2Score]="vm.player2Score"></app-game-scores>
+
+    <app-game-actions
+      [rockIcon]="faHandBackFist"
+      [paperIcon]="faHand"
+      [scissorsIcon]="faHandScissors"></app-game-actions>
   }
+
+  <div style="width: 100%; text-align: center">
+    @if (!startGame) {
+      <p>Enter player names to start!</p>
+    } @else {
+      Choose hand...
+    }
+  </div>
 </ng-container>

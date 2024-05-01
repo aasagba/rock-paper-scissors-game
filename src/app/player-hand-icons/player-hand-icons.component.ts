@@ -7,7 +7,7 @@ import { IconDefinition } from '@fortawesome/free-regular-svg-icons';
   standalone: true,
   imports: [FaIconComponent],
   templateUrl: './player-hand-icons.component.html',
-  styleUrl: './player-hand-icons.component.css',
+  styleUrl: './player-hand-icons.component.scss',
 })
 export class PlayerHandIconsComponent {
   @Input() player1Icon: IconDefinition;
