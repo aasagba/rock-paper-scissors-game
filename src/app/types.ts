@@ -12,3 +12,5 @@ export interface VM {
   player2Score: number;
   result: result | null;
 }
+
+export const moves: handShape[] = ['rock', 'paper', 'scissors'];

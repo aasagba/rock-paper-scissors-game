@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { handShape } from '../types';
 
@@ -14,5 +14,9 @@ export class GameActionsComponent {
   @Input() paperIcon;
   @Input() scissorsIcon;
 
-  chooseHand(hand: handShape) {}
+  @Output() handSelection = new EventEmitter<handShape>();
+
+  chooseHand(hand: handShape) {
+    this.handSelection.emit(hand);
+  }
 }

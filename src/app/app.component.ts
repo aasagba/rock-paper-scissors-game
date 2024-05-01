@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BehaviorSubject, map, Observable } from 'rxjs';
-import { handShape, VM } from './types';
+import { handShape, result, VM } from './types';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { PlayerHandIconsComponent } from './player-hand-icons/player-hand-icons.component';
@@ -12,6 +12,7 @@ import {
 } from '@fortawesome/free-regular-svg-icons';
 import { GameScoresComponent } from './game-scores/game-scores.component';
 import { GameActionsComponent } from './game-actions/game-actions.component';
+import { moves } from './types';
 
 @Component({
   selector: 'app-root',
@@ -37,19 +38,22 @@ export class AppComponent implements OnInit {
   faHand = faHand;
   faHandScissors = faHandScissors;
 
-  private initGame$: BehaviorSubject<handShape | null> = new BehaviorSubject(
-    null
-  );
+  private handSelectionSub$: BehaviorSubject<handShape | null> =
+    new BehaviorSubject(null);
   private player1Score = 0;
   private player2Score = 0;
 
   ngOnInit(): void {
-    this.vm$ = this.initGame$.pipe(
+    this.vm$ = this.handSelectionSub$.pipe(
       map(hand => {
-        const player1Hand = hand;
-        const player2Hand = null;
+        console.log('hand: ', hand);
 
-        const result = null;
+        const player1Hand = hand;
+        const player2Hand = hand ? this.generateComputerHand() : null;
+
+        const result: result = hand
+          ? this.processResult(player1Hand, player2Hand)
+          : null;
 
         const player1Score = this.player1Score;
         const player2Score = this.player2Score;
@@ -74,5 +78,39 @@ export class AppComponent implements OnInit {
     this.player2 = names.player2;
 
     this.startGame = Boolean(this.player1 && this.player2);
+  }
+
+  onHandSelection(hand: handShape) {
+    this.handSelectionSub$.next(hand);
+  }
+
+  generateComputerHand(): handShape {
+    return moves[Math.floor(Math.random() * moves.length)];
+  }
+
+  /**
+   *
+   * @param player1Hand
+   * @param player2Hand
+   *
+   * rules:
+   *  > rock beats scissors
+   *  > paper beats rock
+   *  > scissors beats paper
+   *  > same hand is draw
+   */
+  processResult(player1Hand: handShape, player2Hand: handShape): result {
+    if (player1Hand === player2Hand) return 'draw';
+
+    const rockBeatsScissors: boolean =
+      player1Hand === 'rock' && player2Hand === 'scissors';
+    const paperBeatsRock: boolean =
+      player1Hand === 'paper' && player2Hand === 'rock';
+    const scissorsBeatsPaper: boolean =
+      player1Hand === 'scissors' && player2Hand === 'paper';
+
+    return rockBeatsScissors || paperBeatsRock || scissorsBeatsPaper
+      ? 'win'
+      : 'lose';
   }
 }

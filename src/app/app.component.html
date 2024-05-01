@@ -6,6 +6,8 @@
     [player2Icon]="vm.player2Icon">
   </app-player-hand-icons>
 
+  {{ vm.player1Hand }}
+
   @if (startGame) {
     <app-game-scores
       [player1Score]="vm.player1Score"
@@ -14,7 +16,8 @@
     <app-game-actions
       [rockIcon]="faHandBackFist"
       [paperIcon]="faHand"
-      [scissorsIcon]="faHandScissors"></app-game-actions>
+      [scissorsIcon]="faHandScissors"
+      (handSelection)="onHandSelection($event)"></app-game-actions>
   }
 
   <div style="width: 100%; text-align: center">
