@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-game-scores',
@@ -6,6 +6,7 @@ import { Component, Input } from '@angular/core';
   imports: [],
   templateUrl: './game-scores.component.html',
   styleUrl: './game-scores.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GameScoresComponent {
   @Input() player1Score: number = 0;

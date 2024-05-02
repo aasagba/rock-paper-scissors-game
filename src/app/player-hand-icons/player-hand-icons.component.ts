@@ -9,7 +9,7 @@ import { NgIf } from '@angular/common';
   imports: [FaIconComponent, NgIf],
   templateUrl: './player-hand-icons.component.html',
   styleUrl: './player-hand-icons.component.scss',
-  // changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PlayerHandIconsComponent {
   @Input() player1Icon: IconDefinition;

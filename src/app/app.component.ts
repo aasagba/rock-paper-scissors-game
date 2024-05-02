@@ -48,8 +48,6 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.vm$ = this.handSelectionSub$.pipe(
       map(hand => {
-        console.log('hand: ', hand);
-
         const player1Hand = hand;
         const player2Hand = hand ? this.generateComputerHand() : null;
 

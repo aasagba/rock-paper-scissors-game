@@ -1,17 +1,17 @@
 <div class="result-container">
   @if (!startGame) {
-    <p>Enter player names to start!</p>
-  }
-
-  <p>
-    @if (!result) {
-      Choose hand...
-    } @else {
-      @if (result === 'draw') {
-        Draw
+    <p data-testid="start-msg">Enter player names to start!</p>
+  } @else {
+    <p>
+      @if (!result) {
+        Choose hand...
       } @else {
-        {{ result === 'win' ? player1 : player2 }} Wins!
+        @if (result === 'draw') {
+          Draw
+        } @else {
+          {{ result === 'win' ? player1 : player2 }} Wins!
+        }
       }
-    }
-  </p>
+    </p>
+  }
 </div>

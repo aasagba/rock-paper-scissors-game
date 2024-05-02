@@ -12,6 +12,11 @@
       <input type="text" formControlName="player2" id="player_2" />
     </div>
 
-    <button (click)="startGame()" [disabled]="form.invalid">Play</button>
+    <button
+      data-testid="play-btn"
+      (click)="startGame()"
+      [disabled]="form.invalid">
+      Play
+    </button>
   </div>
 </form>

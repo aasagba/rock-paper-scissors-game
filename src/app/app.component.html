@@ -6,21 +6,21 @@
     [player2Icon]="vm.player2Icon">
   </app-player-hand-icons>
 
-  @if (startGame) {
-    <app-game-scores
-      [player1Score]="vm.player1Score"
-      [player2Score]="vm.player2Score"></app-game-scores>
+  <app-game-scores
+    *ngIf="startGame"
+    [player1Score]="vm.player1Score"
+    [player2Score]="vm.player2Score"></app-game-scores>
 
-    <app-game-result
-      [startGame]="startGame"
-      [result]="vm.result"
-      [player1]="player1"
-      [player2]="player2"></app-game-result>
+  <app-game-results
+    [startGame]="startGame"
+    [result]="vm.result"
+    [player1]="player1"
+    [player2]="player2"></app-game-results>
 
-    <app-game-actions
-      [rockIcon]="faHandBackFist"
-      [paperIcon]="faHand"
-      [scissorsIcon]="faHandScissors"
-      (handSelection)="onHandSelection($event)"></app-game-actions>
-  }
+  <app-game-actions
+    *ngIf="startGame"
+    [rockIcon]="faHandBackFist"
+    [paperIcon]="faHand"
+    [scissorsIcon]="faHandScissors"
+    (handSelection)="onHandSelection($event)"></app-game-actions>
 </ng-container>
